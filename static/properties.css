@@ -2,6 +2,7 @@
     border: 2px solid black;
     text-align: center;
     width: 100px;
+    margin: auto;
 }
 
 #character-title {
@@ -10,4 +11,14 @@
 
 #character {
     font-size: 64pt;
+}
+
+#codepoint {
+    font-size: 24pt;
+    text-align: center;
+}
+
+#character-name {
+    font-size: 24pt;
+    text-align: center;
 }

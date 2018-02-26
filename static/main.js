@@ -69,6 +69,9 @@ Seshat.Views.Properties = Backbone.View.extend({
 			_debug = propertyList;
 			for (var cat in propertyList.properties) {
 				for (var prop in propertyList.properties[cat]) {
+					if (prop == "name") {
+						this.setName( propertyList.properties[cat][prop]);
+					}
 					var property = new Seshat.Models.Property({
 						property: propertyNames[prop],
 						value: propertyList.properties[cat][prop]
@@ -82,6 +85,10 @@ Seshat.Views.Properties = Backbone.View.extend({
 	addOne: function(model) {
 		view = new Seshat.Views.Property({ model: model });
 		$("table", this.el).append(view.render());
+	},
+
+	setName: function(name) {
+		$("#character-name").html(name);
 	},
 
 	dummy: function() {
