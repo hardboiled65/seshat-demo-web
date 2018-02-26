@@ -70,7 +70,7 @@ Seshat.Views.Properties = Backbone.View.extend({
 			for (var cat in propertyList.properties) {
 				for (var prop in propertyList.properties[cat]) {
 					var property = new Seshat.Models.Property({
-						property: prop,
+						property: propertyNames[prop],
 						value: propertyList.properties[cat][prop]
 					});
 					this.addOne(property);
