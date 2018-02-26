@@ -1,3 +1,4 @@
+var _debug = null;
 var Seshat = {
 	Models: {},
 	Collections: {},
@@ -23,7 +24,7 @@ Seshat.Models.PropertyList = Backbone.Model.extend({
 //==----------------------
 
 Seshat.Collections.Properties = Backbone.Collection.extend({
-	model: Seshat.Models.Property,
+	model: Seshat.Models.PropertyList,
 	url: "/data.json",
 	/*
 	url: function() {
@@ -61,13 +62,24 @@ Seshat.Views.Properties = Backbone.View.extend({
 	},
 
 	addProperties: function() {
-		this.collection.each(this.addOne);
+		// this.collection.each(this.addOne);
 		if (this.collection.length > 0) {
+			var propertyListModel = this.collection.at(0);
+			var propertyList = propertyListModel.toJSON();
+			_debug = propertyList;
+			for (var cat in propertyList.properties) {
+				for (var prop in propertyList.properties[cat]) {
+					var property = new Seshat.Models.Property({
+						property: prop,
+						value: propertyList.properties[cat][prop]
+					});
+					this.addOne(property);
+				}
+			}
 		}
 	},
 
 	addOne: function(model) {
-		console.log(model.url());
 		view = new Seshat.Views.Property({ model: model });
 		$("table", this.el).append(view.render());
 	},
@@ -88,11 +100,14 @@ Seshat.Views.Property = Backbone.View.extend({
 	render: function() {
 		// console.log("Views.Property.render");
 		// console.log(this.model.toJSON());
+		/*
 		var obj = {
 			prop: "name",
 			val: this.model.attributes.properties.misc.name
 		};
-		$(this.el).append(this.template(obj));
+		*/
+		// $(this.el).append(this.template(obj));
+		$(this.el).append(this.template(this.model.toJSON()));
 		return $(this.el);
 	}
 });
