@@ -1,7 +1,7 @@
 var _debug = null;
 
 var API_SERVER_DBG = "http://localhost:8000/api/"
-var API_SERVER_RUN = "http://ec2-18-217-255-104.us-east-2.compute.amazonaws.com:8000/api/"
+var API_SERVER_RUN = "https://api.libseshat.tk/api/"
 var API_SERVER = API_SERVER_RUN
 
 var Seshat = {
