@@ -1,4 +1,9 @@
 var _debug = null;
+
+var API_SERVER_DBG = "http://localhost:8000/api/"
+var API_SERVER_RUN = "http://ec2-18-217-255-104.us-east-2.compute.amazonaws.com:8000/api/"
+var API_SERVER = API_SERVER_RUN
+
 var Seshat = {
 	Models: {},
 	Collections: {},
@@ -128,7 +133,7 @@ Seshat.Router = Backbone.Router.extend({
 	browseCodePoint: function(cp) {
 		Seshat.properties = new Seshat.Collections.Properties();
 		Seshat.properties.url = function() {
-			return "http://localhost:8000/api/unicode/properties/" + cp;
+			return API_SERVER_RUN + "unicode/properties/" + cp;
 		}
 		new Seshat.Views.Properties({ collection: Seshat.properties });
 		Seshat.properties.fetch({
