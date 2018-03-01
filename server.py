@@ -11,7 +11,7 @@ def index():
 def browse(cp):
     print(cp)
     codepoint = 'U+' + cp.upper()
-    return render_template('index.html', character=chr(int(cp, base=16)),
+    return render_template('browse.html', character=chr(int(cp, base=16)),
         codepoint=codepoint)
 
 
