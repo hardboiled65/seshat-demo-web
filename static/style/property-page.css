@@ -25,6 +25,7 @@
 
 #properties-box table {
     border-spacing: 0px 2px;
+    color: black;
 }
 
 #properties-box thead td {
