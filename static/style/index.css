@@ -5,27 +5,50 @@ html {
 }
 
 body {
-    background-color: #060029;
-    color: silver;
+    background-color: #f5f5dc;
+    color: #000000;
     margin: 0px;
     padding: 0px;
+}
+
+h1 {
+    margin: 0px;
 }
 
 #seshat-demo-header {
     text-align: center;
 }
 
+#seshat-demo-header a img {
+    position: absolute;
+    left: 20px;
+    height: 50px;
+}
+
+#seshat-demo-header h1 {
+    font-family: 'Great Vibes', serif;
+    font-size: 48pt;
+    padding-top: 50px;
+}
+
 #container {
     min-height: 100%;
+}
+
+#container ul {
+    margin: 0px auto;
+    width: 400px;
 }
 
 #container li {
     width: 300px;
     border-bottom: 3px solid #308d57;
+    font-size: 16pt;
+    margin: 10px 0px;
 }
 
 #container li a {
-    color: silver;
+    color: #000000;
     text-decoration: none;
 }
 
@@ -33,7 +56,7 @@ body {
     text-align: center;
     height: 100px;
     width: 100%;
-    background-color: #d6a763;
+    background-color: #54583d;
     position: absolute;
     bottom: 0;
     display: table;
@@ -42,7 +65,8 @@ body {
 #footer p {
     font-size: 80%;
     text-align: center;
-    color: black;
+    color: #308d57;
     display: table-cell;
     vertical-align: middle;
+    text-shadow: 0px 0px 10px black;
 }
