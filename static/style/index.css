@@ -1,0 +1,48 @@
+html {
+    position: relative;
+    min-height: 80%;
+    padding-bottom: 100px;
+}
+
+body {
+    background-color: #060029;
+    color: silver;
+    margin: 0px;
+    padding: 0px;
+}
+
+#seshat-demo-header {
+    text-align: center;
+}
+
+#container {
+    min-height: 100%;
+}
+
+#container li {
+    width: 300px;
+    border-bottom: 3px solid #308d57;
+}
+
+#container li a {
+    color: silver;
+    text-decoration: none;
+}
+
+#footer {
+    text-align: center;
+    height: 100px;
+    width: 100%;
+    background-color: #d6a763;
+    position: absolute;
+    bottom: 0;
+    display: table;
+}
+
+#footer p {
+    font-size: 80%;
+    text-align: center;
+    color: black;
+    display: table-cell;
+    vertical-align: middle;
+}

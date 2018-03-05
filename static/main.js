@@ -22,6 +22,9 @@ Seshat.Models.Property = Backbone.Model.extend({
 });
 
 Seshat.Models.PropertyList = Backbone.Model.extend({
+	defaults: {
+		code: new CodePoint(0)
+	}
 });
 
 //==----------------------
@@ -53,6 +56,10 @@ var property_template = _.template($("#template-property").html());
 Seshat.Views.Properties = Backbone.View.extend({
 	el: $("#properties-box"),
 	template: properties_template,
+	events: {
+		"click #btn-left": "prevCharacter",
+		"click #btn-right": "nextCharacter"
+	},
 
 	initialize: function() {
 		// console.log("Views.Properties.initialize");
@@ -63,6 +70,7 @@ Seshat.Views.Properties = Backbone.View.extend({
 	render: function() {
 		// console.log("Views.Properties.render");
 		// $(this.el).html(this.template());
+		$("table tbody tr").remove();
 		this.addProperties();
 	},
 
@@ -98,6 +106,14 @@ Seshat.Views.Properties = Backbone.View.extend({
 		$("#character-name").html(name);
 	},
 
+	prevCharacter: function(e) {
+		alert("prev");
+		router.navigate("browse/ac00");
+	},
+
+	nextCharacter: function(e) {
+	},
+
 	dummy: function() {
 		// delete later
 	}
@@ -126,6 +142,10 @@ Seshat.Views.Property = Backbone.View.extend({
 	}
 });
 
+//==----------------------
+// Router
+//==----------------------
+
 Seshat.Router = Backbone.Router.extend({
 	routes: {
 		"": "defaultRoutes",
@@ -133,7 +153,7 @@ Seshat.Router = Backbone.Router.extend({
 	},
 
 	browseCodePoint: function(cp) {
-		Seshat.properties = new Seshat.Collections.Properties();
+		Seshat.properties = new Seshat.Collections.Properties({});
 		Seshat.properties.url = function() {
 			return API_SERVER_RUN + "unicode/properties/" + cp;
 		}

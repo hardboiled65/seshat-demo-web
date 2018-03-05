@@ -1,0 +1,7 @@
+#table-character-list {
+    border: 1px solid black;
+}
+
+#table-character-list td {
+    border: 1px solid grey;
+}
