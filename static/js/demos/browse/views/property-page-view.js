@@ -10,13 +10,13 @@ Seshat.Demos.Browse.Views.PropertyPageView = Backbone.View.extend({
 
 	initialize: function() {
 		this.collection.bind("reset", this.render, this);
+		this.collection.bind("add", this.render, this);
 		this.collection.bind("change", this.render, this);
 
 		// Make empty model for rendering first.
 		var empty = new this.collection.model({
 			codepoint: "U+"
 		}).toJSON();
-		console.log(empty);
 		empty.character = "";
 		$(this.el).html(this.template(empty));
 	},
