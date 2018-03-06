@@ -30,18 +30,24 @@ Seshat.Router = Backbone.Router.extend({
 	},
 
 	properties: function(cp) {
+		// Initialize if not exist.
 		if (Seshat.Demos.Browse.properties === undefined) {
 			Seshat.Demos.Browse.properties =
-				new Seshat.Demos.Browse.Collections.PropertyPage({});
+				new Seshat.Demos.Browse.Collections.PropertyPage(null, {});
+			console.log("new collection: " + Seshat.Demos.Browse.properties.length);
 		}
-		var properties = Seshat.Demos.Browse.properties;
+		var properties = Seshat.Demos.Browse.properties; // alias
 		properties.url = function() {
 			return API_SERVER + "unicode/properties/" + cp;
 		}
-		new Seshat.Demos.Browse.Views.PropertyPageView({
-			collection: properties
-		});
+		if (Seshat.Demos.Browse.propertyListView === undefined) {
+			Seshat.Demos.Browse.propertyListView =
+				new Seshat.Demos.Browse.Views.PropertyPageView({
+					collection: properties
+				});
+		}
 		properties.fetch({
+			remove: false,
 			dataType: "json"
 		});
 	}

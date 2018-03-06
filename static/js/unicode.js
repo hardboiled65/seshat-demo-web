@@ -10,7 +10,7 @@ class CodePoint {
 			str = "0" + str;
 		}
 		if (prefix === true) str = "U+" + str;
-		return str;
+		return str.toUpperCase();
 	}
 
 	toCharacter() {

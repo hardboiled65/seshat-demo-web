@@ -29,7 +29,7 @@ Seshat.Views.AppView = Backbone.View.extend({
 			console.log("");
 		} else {
 			alert("debug: not such link");
-			console.log(e)
+			// console.log(e)
 		}
 	},
 
@@ -40,6 +40,6 @@ Seshat.Views.AppView = Backbone.View.extend({
 
 	testEvent: function(e) {
 		// alert("test!");
-		console.log(e);
+		// console.log(e);
 	}
 });
