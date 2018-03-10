@@ -23,14 +23,14 @@ class CodePoint {
 	// Return previous CodePoint instance.
 	previous() {
 		if (this.code <= 0)
-			return
+			return this
 		return new CodePoint(this.code - 1)
 	}
 
 	// Return next CodePoint instance.
 	next() {
 		if (this.code >= 0x10FFFF)
-			return
+			return this
 		return new CodePoint(this.code + 1)
 	}
 
