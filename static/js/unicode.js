@@ -20,6 +20,20 @@ class CodePoint {
 		return String.fromCodePoint(this.code);
 	}
 
+	// Return previous CodePoint instance.
+	previous() {
+		if (this.code <= 0)
+			return
+		return new CodePoint(this.code - 1)
+	}
+
+	// Return next CodePoint instance.
+	next() {
+		if (this.code >= 0x10FFFF)
+			return
+		return new CodePoint(this.code + 1)
+	}
+
 	static fromString(str, prefix=false) {
 		if (prefix === true) str = str.substr(2);
 		return new CodePoint(parseInt(str, 16));

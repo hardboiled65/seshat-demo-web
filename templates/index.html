@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="/style/index.css">
   <link rel="stylesheet" href="/style/character-list.css">
   <link rel="stylesheet" href="/style/property-page.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 </head>
 <body>
@@ -15,7 +18,7 @@
     <h1>Seshat Web Demo (beta)</h1>
   </header>
   <section id="container">
-    <p>Demos</p>
+    <router-view></router-view>
   </section>
   <footer id="footer">
     <p>Copyright &copy; 2018 hardboiled65. All rights reserved.</p>
@@ -23,55 +26,98 @@
 
   <!-- Templates -->
   <script type="text/template" id="demos-template">
-    <p>Demos</p>
-    <ul>
-      <li><a href="#" class="link-demos" id="link-demos-browse">Character Browser</a></li>
-      <li><a href="#" class="link-demos" id="link-demos-segmentation">Text Segmentations</a></li>
-      <li><a href="#" class="link-demos" id="link-demos-normalize">Normalization</a></li>
-    </ul>
+    <div>
+      <p>Demos</p>
+      <ul>
+        <li><router-link to="/browse" class="link-demos" id="link-demos-browse">Character Browser</router-link></li>
+        <li><router-link to="/segmentation" class="link-demos" id="link-demos-segmentation">Text Segmentations</router-link></li>
+        <li><router-link to="/normalize" class="link-demos" id="link-demos-normalize">Normalization</router-link></li>
+      </ul>
+    </div>
   </script>
 
+  <script type="text/template" id="browse-template">
+    <div>
+      <p>Browse - Demos</p>
+      <router-view></router-view>
+    </div>
+  </script>
   <script type="text/template" id="character-template">
-    <span><a href="/browse/<%= codePoint %>"><%= string %></a></span>
+    <td v-if="codePoint === ''">{{ string }}</td>
+    <td v-else>
+      <span><router-link :to="'/browse/' + codePoint">{{ string }}</router-link></span>
+    </td>
   </script>
   <script type="text/template" id="character-list-template">
     <table id="table-character-list">
+      <thead>
+        <tr>
+          <th></th>
+          <th>0</th><th>1</th><th>2</th><th>3</th>
+          <th>4</th><th>5</th><th>6</th><th>7</th>
+          <th>8</th><th>9</th><th>A</th><th>B</th>
+          <th>C</th><th>D</th><th>E</th><th>F</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in characters">
+          <character
+            v-for="character in item"
+            v-bind:code-point="character.codePoint"
+            v-bind:string="character.string">
+          </character>
+        </tr>
+      </tbody>
+    </table>
+  </script>
+  <script type="text/template" id="property-template">
+    <table id="table-properties">
+      <thead>
+        <tr>
+          <td>Property</td>
+          <td>Value</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cat, props in property_names.items() %}
+        {% for prop, full in props.items() %}
+        <tr>
+          <td>(( full ))</td>
+          <td>{{ String(properties.(( cat )).(( prop ))) }}</td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+      </tbody>
     </table>
   </script>
   <script type="text/template" id="properties-template">
-    <div id="codepoint">
-      <%= codepoint %>
-    </div>
-    <div id="character-box">
-      <div id="character-title">Character</div>
-      <div id="character"><%= character %></div>
-    </div>
-    <div id="character-name">
-      <%= properties.misc.name || "Loading" %>
-    </div>
-    <div id="properties-box">
-      <div id="control-btn-box">
-        <button id="btn-left">Left</button>
-        <button id="btn-right">Right</button>
-      </div> <!-- control-btn-box -->
-      <table "table-properties">
-        <thead>
-          <tr>
-            <td>Property</td>
-            <td>Value</td>
-          </tr>
-        </thead>
-        <tbody>
-          {% for cat, props in property_names.items() %}
-          {% for prop, full in props.items() %}
-          <tr>
-            <td>{{ full }}</td>
-            <td><%= String(properties.{{ cat }}.{{ prop }}) %></td>
-          </td>
-          {% endfor %}
-          {% endfor %}
-        </tbody>
-      </table>
+    <div>
+      <div id="codepoint">
+        {{ codepoint }}
+      </div>
+      <div id="character-box">
+        <div id="character-title">Character</div>
+        <div id="character">{{ character }}</div>
+      </div>
+      <div id="character-name">
+        {{ name || "Loading ..." }}
+      </div>
+      <div id="properties-box">
+        <div id="control-btn-box">
+          <router-link
+            :to="prevLink"
+            tag="button"
+            id="btn-left">Left
+          </router-link>
+          <router-link
+            :to="nextLink"
+            tag="button"
+            id="btn-right">Right
+          </router-link>
+          <property v-on:name-fetched="updateName" v-bind:codepoint="codepoint">
+          </property>
+        </div> <!-- control-btn-box -->
+      </div>
     </div>
   </script>
 
@@ -80,10 +126,10 @@
   <script src="/libs/underscore.js"></script>
   <script src="/libs/backbone.js"></script>
 
-  <script src="/js/property_names.js"></script>
   <script src="/js/unicode.js"></script>
   <script src="/js/seshat-demo.js"></script>
 
+  <!--
   <script src="/js/demos/browse/models/character.js"></script>
   <script src="/js/demos/browse/collections/character-list.js"></script>
   <script src="/js/demos/browse/views/character-list-view.js"></script>
@@ -94,6 +140,14 @@
   <script src="/js/demos/browse/views/property-page-view.js"></script>
 
   <script src="/js/views/app-view.js"></script>
+  -->
+  <script src="/js/demos/browse/components/character.js"></script>
+  <script src="/js/demos/browse/components/character-list.js"></script>
+  <script src="/js/demos/browse/components/property.js"></script>
+  <script src="/js/demos/browse/components/property-page.js"></script>
+  <script src="/js/demos/browse/browse-app.js"></script>
+  <script src="/js/demos/demos-app.js"></script>
+
   <script src="/js/routers/router.js"></script>
   <script src="/js/app.js"></script>
 

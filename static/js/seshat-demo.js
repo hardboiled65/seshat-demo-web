@@ -3,8 +3,12 @@ var SeshatDemo = function() {
 		Views: {},
 		Router: {},
 		Demos: {
-			Browse: { Models: {}, Collections: {}, Views: {} },
-			Segmentation: { Models: {}, Collections: {}, Views: {} }
+			Browse: {
+				Models: {}, Collections: {}, Views: {}, Components: {}
+			},
+			Segmentation: {
+				Models: {}, Collections: {}, Views: {}, Components: {}
+			}
 		}
 	};
 };
