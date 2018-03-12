@@ -29,10 +29,22 @@
   <script type="text/template" id="demos-template">
     <div>
       <p>Demos</p>
-      <ul>
-        <li><router-link to="/browse" class="link-demos" id="link-demos-browse">Character Browser</router-link></li>
-        <li><router-link to="/segmentation" class="link-demos" id="link-demos-segmentation">Text Segmentations</router-link></li>
-        <li><router-link to="/normalize" class="link-demos" id="link-demos-normalize">Normalization</router-link></li>
+      <ul id="list-demos">
+        <li id="list-demos-browse">
+          <router-link to="/browse" class="link-demos" id="link-demos-browse">
+            <img src="/img/icon-browse.png"><span>Character Browser</span>
+          </router-link>
+        </li>
+        <li id="list-demos-segmentation">
+          <router-link to="/segmentation" class="link-demos" id="link-demos-segmentation">
+            <img src="/img/icon-no.png"><span>Text Segmentations</span>
+          </router-link>
+        </li>
+        <li id="list-demos-normalize">
+          <router-link to="/normalize" class="link-demos" id="link-demos-normalize">
+            <img src="/img/icon-no.png"><span>Normalization</span>
+          </router-link>
+        </li>
       </ul>
     </div>
   </script>

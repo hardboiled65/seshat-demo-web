@@ -37,19 +37,45 @@ h1 {
 
 #container ul {
     margin: 0px auto;
-    width: 400px;
+    width: 500px;
 }
 
 #container li {
-    width: 300px;
-    border-bottom: 3px solid #308d57;
     font-size: 16pt;
-    margin: 10px 0px;
 }
 
 #container li a {
     color: #000000;
     text-decoration: none;
+}
+
+#list-demos {
+    list-style-type: none;
+}
+
+#list-demos li {
+    width: 500px;
+    font-size: 20pt;
+    margin: 30px 0px;
+}
+
+#list-demos li span {
+    border-bottom: 10px solid #308d57;
+    display: table-cell;
+    padding: 10px;
+    width: 300px;
+}
+
+#list-demos img {
+    width: 96px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+#list-demos-browse {
+}
+
+#list-demos-segmentation, #list-demos-normalize {
 }
 
 #footer {
