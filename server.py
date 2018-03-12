@@ -23,5 +23,11 @@ def index(demo, cp=None):
 def browse_index(cp=None):
     return render_template('index.html', property_names=property_names)
 
+@app.route('/segmentation', defaults={'_type': ''})
+@app.route('/segmentation/<_type>')
+@app.route('/segmentation/<_type>/<text>')
+def segmentation_index(_type, text=''):
+    return render_template('index.html', property_names=property_names)
+
 if __name__ == '__main__':
     app.run(port=5000)

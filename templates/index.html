@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/style/index.css">
   <link rel="stylesheet" href="/style/character-list.css">
   <link rel="stylesheet" href="/style/property-page.css">
+  <link rel="stylesheet" href="/style/segmentation.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -121,6 +122,58 @@
     </div>
   </script>
 
+  <script type="text/template" id="segmentation-template">
+    <div>
+      <h2>Grapheme cluster</h2>
+      <input type="radio" id="segmentation-grapheme" value="grapheme" v-model="type">
+      <label for="segmentation-grapheme">Grapheme</label>
+      <input type="radio" id="segmentation-word" value="word" v-model="type" disabled="true">
+      <label for="segmentation-word">Word</label>
+      <div>
+        <p>Examples</p>
+        <select v-model="text">
+          <option>L'incendie a carbonisé la forêt entière.</option>
+          <option>나랏〮말〯ᄊᆞ미〮듀ᇰ귁〮에〮달아〮문ᄍᆞᆼ와〮로〮서르ᄉᆞᄆᆞᆺ디〮아니〮ᄒᆞᆯᄊᆡ〮</option>
+          <option>ﾊﾟﾝﾊｺﾞﾊﾝﾖﾘｵｲｼｲ</option>
+        </select>
+      </div>
+      <p>Input text</p>
+      <input v-model="text">
+      <button v-on:click="fetchResult">Result</button>
+      <results v-if="result" v-bind:breaks="result.breaks"></results>
+    </div>
+  </script>
+  <script type="text/template" id="result-text-template">
+    <p>
+      <span class="result-segment" v-for="segment in segments">{{ segment }}</span>
+    </p>
+  </script>
+  <script type="text/template" id="result-detail-template">
+    <div>
+      <div
+        class="result-detail-parent"
+        v-for="(br, index) in breaks"
+        v-bind:key="index">
+        <div class="result-detail-head">{{ segments[index] }}</div>
+        <div
+          class="result-detail-inner"
+          v-for="cp in br">
+          <p class="character">{{ cp.character }}</p>
+          <p>{{ cp.codepoint }}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  <script type="text/template" id="results-template">
+    <div>
+      <p>Result</p>
+      <result-text v-bind:segments="segments"></result-text>
+      <result-detail v-bind:breaks="breaks" v-bind:segments="segments"></result-detail>
+      <!-- <p>breaks: {{ breaks }}</p> -->
+      <!-- <p>segments: {{ segments }}</p> -->
+    </div>
+  </script>
+
   <!-- Frameworks/Libraries -->
   <script src="/libs/jquery-3.3.1.js"></script>
   <script src="/libs/underscore.js"></script>
@@ -146,6 +199,12 @@
   <script src="/js/demos/browse/components/property.js"></script>
   <script src="/js/demos/browse/components/property-page.js"></script>
   <script src="/js/demos/browse/browse-app.js"></script>
+
+  <script src="/js/demos/segmentation/components/result-text.js"></script>
+  <script src="/js/demos/segmentation/components/result-detail.js"></script>
+  <script src="/js/demos/segmentation/components/results.js"></script>
+  <script src="/js/demos/segmentation/segmentation-app.js"></script>
+
   <script src="/js/demos/demos-app.js"></script>
 
   <script src="/js/routers/router.js"></script>

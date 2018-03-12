@@ -6,7 +6,7 @@ var SeshatDemo = function() {
 			Browse: {
 				Models: {}, Collections: {}, Views: {}, Components: {}
 			},
-			Segmentation: {
+			Seg: {
 				Models: {}, Collections: {}, Views: {}, Components: {}
 			}
 		}

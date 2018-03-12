@@ -1,0 +1,29 @@
+.result-segment {
+    border: 1px solid red;
+    white-space: pre;
+}
+
+.result-detail-parent {
+    display: flex;
+}
+
+.result-detail-head {
+    width: 50px;
+    border: 2px solid black;
+}
+
+.result-detail-inner {
+    width: 80px;
+    border: 2px dotted black;
+    text-align: center;
+}
+
+.result-detail-inner .character {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+.result-detail-inner p {
+    margin: 0px;
+}

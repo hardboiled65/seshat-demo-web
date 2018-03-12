@@ -32,6 +32,14 @@ var router = new VueRouter({
 				}
 			]
 		},
+		{
+			path: '/segmentation/:type?/:text?',
+			name: 'segmentation',
+			component: Seshat.Demos.Seg.app,
+			props: {
+				type: (this.params) ? this.params.type : 'grapheme'
+			}
+		}
 		/*
 		{
 			path: '/browse/:cp',
