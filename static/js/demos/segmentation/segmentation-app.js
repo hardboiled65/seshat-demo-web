@@ -28,7 +28,7 @@ Seshat.Demos.Seg.app = Vue.component('segmentation', {
 	},
 	created: function() {
 		if (!this.$route.params.type) {
-			this.$router.push('segmentation/' + this.type)
+			// this.$router.push('segmentation/' + this.type)
 		}
 		if (this.$route.params.text) {
 			this.text = textEscape(this.$route.params.text)

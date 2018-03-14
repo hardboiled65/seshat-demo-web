@@ -33,6 +33,10 @@ var router = new VueRouter({
 			]
 		},
 		{
+			path: '/segmentation',
+			redirect: '/segmentation/grapheme'
+		},
+		{
 			path: '/segmentation/:type?/:text?',
 			name: 'segmentation',
 			component: Seshat.Demos.Seg.app,
