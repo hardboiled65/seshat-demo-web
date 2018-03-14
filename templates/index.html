@@ -19,7 +19,9 @@
     <h1>Seshat Web Demo (beta)</h1>
   </header>
   <section id="container">
-    <router-view></router-view>
+    <div id="app-view">
+      <router-view></router-view>
+    </div>
   </section>
   <footer id="footer">
     <p>Copyright &copy; 2018 hardboiled65. All rights reserved.</p>
@@ -27,31 +29,37 @@
 
   <!-- Templates -->
   <script type="text/template" id="demos-template">
-    <div>
-      <p>Demos</p>
-      <ul id="list-demos">
-        <li id="list-demos-browse">
-          <router-link to="/browse" class="link-demos" id="link-demos-browse">
-            <img src="/img/icon-browse.png"><span>Character Browser</span>
-          </router-link>
-        </li>
-        <li id="list-demos-segmentation">
-          <router-link to="/segmentation" class="link-demos" id="link-demos-segmentation">
-            <img src="/img/icon-no.png"><span>Text Segmentations</span>
-          </router-link>
-        </li>
-        <li id="list-demos-normalize">
-          <router-link to="/normalize" class="link-demos" id="link-demos-normalize">
-            <img src="/img/icon-no.png"><span>Normalization</span>
-          </router-link>
-        </li>
-      </ul>
-    </div>
+    <div id="demos" class="app-component">
+      <div id="group-demos" class="demos-list-group">
+        <ul id="list-demos">
+          <li id="list-demos-browse">
+            <router-link to="/browse" class="link-demos" id="link-demos-browse">
+              <img src="/img/icon-browse.png" width="96px"><span>Character Browser</span>
+            </router-link>
+          </li>
+          <li id="list-demos-segmentation">
+            <router-link to="/segmentation" class="link-demos" id="link-demos-segmentation">
+              <img src="/img/icon-no.png" width="96px"><span>Text Segmentations</span>
+            </router-link>
+          </li>
+          <li id="list-demos-normalize">
+            <router-link to="/normalize" class="link-demos" id="link-demos-normalize">
+              <img src="/img/icon-no.png" width="96px"><span>Normalization</span>
+            </router-link>
+          </li>
+        </ul>
+      </div> <!-- demo-list -->
+      <div id="group-supports" class="demos-list-group">
+        <p></p>
+        <ul>
+        </ul>
+      </div>
+    </div> <!-- demos -->
   </script>
 
   <script type="text/template" id="browse-template">
-    <div>
-      <p>Browse - Demos</p>
+    <div id="browse" class="app-component">
+      <header>Character Browser - Demos</header>
       <router-view></router-view>
     </div>
   </script>
@@ -135,7 +143,8 @@
   </script>
 
   <script type="text/template" id="segmentation-template">
-    <div>
+    <div id="segmentation" class="app-component">
+      <header>Text Segmentations - Demos</header>
       <h2>Grapheme cluster</h2>
       <input type="radio" id="segmentation-grapheme" value="grapheme" v-model="type">
       <label for="segmentation-grapheme">Grapheme</label>
