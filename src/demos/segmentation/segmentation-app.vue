@@ -66,12 +66,10 @@ export default {
 	methods: {
 		fetchResult: function() {
 			if (this.text === '') return
-			// var text = encodeURIComponent(this.text)
 			var text = this.text.replace(/%/g, '%25')
 				.replace(/\//g, '%2F')
 			axios.get(segmentationUrlPath(text))
 				.then((res) => {
-					// this.$router.push(this.type + '/' + text)
 					this.$router.push({
 						path: '', params: { type: this.type, text: text }
 					})
@@ -88,7 +86,13 @@ export default {
 		},
 		result: function() {
 			('seg: result changed')
-		}
+		},
+        '$route': function(to, from) {
+            if (to.params.text) {
+                this.text = textEscape(to.params.text)
+                this.fetchResult()
+            }
+        }
 	}
 }
 </script>
