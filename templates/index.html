@@ -28,69 +28,7 @@
   </footer>
 
   <!-- Templates -->
-  <script type="text/template" id="demos-template">
-    <div id="demos" class="app-component">
-      <div id="group-demos" class="demos-list-group">
-        <ul id="list-demos">
-          <li id="list-demos-browse">
-            <router-link to="/browse" class="link-demos" id="link-demos-browse">
-              <img src="/img/icon-browse.png" width="96px"><span>Character Browser</span>
-            </router-link>
-          </li>
-          <li id="list-demos-segmentation">
-            <router-link to="/segmentation" class="link-demos" id="link-demos-segmentation">
-              <img src="/img/icon-no.png" width="96px"><span>Text Segmentations</span>
-            </router-link>
-          </li>
-          <li id="list-demos-normalize">
-            <router-link to="/normalize" class="link-demos" id="link-demos-normalize">
-              <img src="/img/icon-no.png" width="96px"><span>Normalization</span>
-            </router-link>
-          </li>
-        </ul>
-      </div> <!-- demo-list -->
-      <div id="group-supports" class="demos-list-group">
-        <p></p>
-        <ul>
-        </ul>
-      </div>
-    </div> <!-- demos -->
-  </script>
 
-  <script type="text/template" id="browse-template">
-    <div id="browse" class="app-component">
-      <header>Character Browser - Demos</header>
-      <router-view></router-view>
-    </div>
-  </script>
-  <script type="text/template" id="character-template">
-    <td v-if="codePoint === ''">{{ string }}</td>
-    <td v-else>
-      <span><router-link :to="'/browse/' + codePoint">{{ string }}</router-link></span>
-    </td>
-  </script>
-  <script type="text/template" id="character-list-template">
-    <table id="table-character-list">
-      <thead>
-        <tr>
-          <th></th>
-          <th>0</th><th>1</th><th>2</th><th>3</th>
-          <th>4</th><th>5</th><th>6</th><th>7</th>
-          <th>8</th><th>9</th><th>A</th><th>B</th>
-          <th>C</th><th>D</th><th>E</th><th>F</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, index) in characters">
-          <character
-            v-for="character in item"
-            v-bind:code-point="character.codePoint"
-            v-bind:string="character.string">
-          </character>
-        </tr>
-      </tbody>
-    </table>
-  </script>
   <script type="text/template" id="property-template">
     <table id="table-properties">
       <thead>
@@ -111,94 +49,14 @@
       </tbody>
     </table>
   </script>
-  <script type="text/template" id="properties-template">
-    <div>
-      <div id="codepoint">
-        {{ codepoint }}
-      </div>
-      <div id="character-box">
-        <div id="character-title">Character</div>
-        <div id="character">{{ character }}</div>
-      </div>
-      <div id="character-name">
-        {{ name || "Loading ..." }}
-      </div>
-      <div id="properties-box">
-        <div id="control-btn-box">
-          <router-link
-            :to="prevLink"
-            tag="button"
-            id="btn-left">Left
-          </router-link>
-          <router-link
-            :to="nextLink"
-            tag="button"
-            id="btn-right">Right
-          </router-link>
-          <property v-on:name-fetched="updateName" v-bind:codepoint="codepoint">
-          </property>
-        </div> <!-- control-btn-box -->
-      </div>
-    </div>
-  </script>
 
-  <script type="text/template" id="segmentation-template">
-    <div id="segmentation" class="app-component">
-      <header>Text Segmentations - Demos</header>
-      <h2>Grapheme cluster</h2>
-      <input type="radio" id="segmentation-grapheme" value="grapheme" v-model="type">
-      <label for="segmentation-grapheme">Grapheme</label>
-      <input type="radio" id="segmentation-word" value="word" v-model="type" disabled="true">
-      <label for="segmentation-word">Word</label>
-      <div>
-        <p>Examples</p>
-        <select v-model="text">
-          <option>L'incendie a carbonisé la forêt entière.</option>
-          <option>나랏〮말〯ᄊᆞ미〮듀ᇰ귁〮에〮달아〮문ᄍᆞᆼ와〮로〮서르ᄉᆞᄆᆞᆺ디〮아니〮ᄒᆞᆯᄊᆡ〮</option>
-          <option>ﾊﾟﾝﾊｺﾞﾊﾝﾖﾘｵｲｼｲ</option>
-        </select>
-      </div>
-      <p>Input text</p>
-      <input v-model="text">
-      <button v-on:click="fetchResult">Result</button>
-      <results v-if="result" v-bind:breaks="result.breaks"></results>
-    </div>
-  </script>
-  <script type="text/template" id="result-text-template">
-    <p>
-      <span class="result-segment" v-for="segment in segments">{{ segment }}</span>
-    </p>
-  </script>
-  <script type="text/template" id="result-detail-template">
-    <div>
-      <div
-        class="result-detail-parent"
-        v-for="(br, index) in breaks"
-        v-bind:key="index">
-        <div class="result-detail-head">{{ segments[index] }}</div>
-        <div
-          class="result-detail-inner"
-          v-for="cp in br">
-          <p class="character">{{ cp.character }}</p>
-          <p>{{ cp.codepoint }}</p>
-        </div>
-      </div>
-    </div>
-  </script>
-  <script type="text/template" id="results-template">
-    <div>
-      <p>Result</p>
-      <result-text v-bind:segments="segments"></result-text>
-      <result-detail v-bind:breaks="breaks" v-bind:segments="segments"></result-detail>
-      <!-- <p>breaks: {{ breaks }}</p> -->
-      <!-- <p>segments: {{ segments }}</p> -->
-    </div>
-  </script>
 
   <!-- Frameworks/Libraries -->
   <script src="/libs/jquery-3.3.1.js"></script>
+  <!--
   <script src="/libs/underscore.js"></script>
   <script src="/libs/backbone.js"></script>
+  -->
 
   <script src="/js/unicode.js"></script>
   <script src="/js/seshat-demo.js"></script>
@@ -215,6 +73,8 @@
 
   <script src="/js/views/app-view.js"></script>
   -->
+
+  <!--
   <script src="/js/demos/browse/components/character.js"></script>
   <script src="/js/demos/browse/components/character-list.js"></script>
   <script src="/js/demos/browse/components/property.js"></script>
@@ -230,6 +90,8 @@
 
   <script src="/js/routers/router.js"></script>
   <script src="/js/app.js"></script>
+  -->
+  <script src="/js/bundle.js"></script>
 
   <!-- Others -->
   <script>

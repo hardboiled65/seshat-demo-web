@@ -1,4 +1,28 @@
-var Seshat = Seshat || SeshatDemo()
+<template>
+<div id="segmentation" class="app-component">
+  <header>Text Segmentations - Demos</header>
+  <h2>Grapheme cluster</h2>
+  <input type="radio" id="segmentation-grapheme" value="grapheme" v-model="type">
+  <label for="segmentation-grapheme">Grapheme</label>
+  <input type="radio" id="segmentation-word" value="word" v-model="type" disabled="true">
+  <label for="segmentation-word">Word</label>
+  <div>
+    <p>Examples</p>
+    <select v-model="text">
+      <option>L'incendie a carbonisé la forêt entière.</option>
+      <option>나랏〮말〯ᄊᆞ미〮듀ᇰ귁〮에〮달아〮문ᄍᆞᆼ와〮로〮서르ᄉᆞᄆᆞᆺ디〮아니〮ᄒᆞᆯᄊᆡ〮</option>
+      <option>ﾊﾟﾝﾊｺﾞﾊﾝﾖﾘｵｲｼｲ</option>
+    </select>
+  </div>
+  <p>Input text</p>
+  <input v-model="text">
+  <button v-on:click="fetchResult">Result</button>
+  <results v-if="result" v-bind:breaks="result.breaks"></results>
+</div>
+</template>
+
+<script>
+import Results from './components/results'
 
 var API_SERVER = 'https://api.libseshat.tk/api/'
 
@@ -12,8 +36,9 @@ var textEscape = function(text) {
 }
 
 var _debug = null
-Seshat.Demos.Seg.app = Vue.component('segmentation', {
-	template: '#segmentation-template',
+export default {
+	// template: '#segmentation-template',
+    name: 'segmentation',
 	props: {
 		type: String
 	},
@@ -24,7 +49,7 @@ Seshat.Demos.Seg.app = Vue.component('segmentation', {
 		}
 	},
 	components: {
-		results: Seshat.Demos.Seg.Components.Results,
+		results: Results,
 	},
 	created: function() {
 		if (!this.$route.params.type) {
@@ -65,4 +90,5 @@ Seshat.Demos.Seg.app = Vue.component('segmentation', {
 			('seg: result changed')
 		}
 	}
-})
+}
+</script>

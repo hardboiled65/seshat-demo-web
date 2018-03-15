@@ -1,13 +1,7 @@
-var Seshat = Seshat || SeshatDemo();
+import Vue from 'vue'
 
-// var appView = new Seshat.Views.AppView({
-// });
-
-/*
-var demos = Vue.component('demos', {
-	template: '#demos-template'
-})
-*/
+import router from './routers/router'
+import Demos from './demos/demos-app'
 
 var vm = new Vue({
 	el: '#container',
@@ -15,8 +9,8 @@ var vm = new Vue({
 		demo: null
 	},
 	components: {
-		demos: Seshat.demos,
-		browse: Seshat.Demos.Browse.app
+		demos: Demos
+		// browse: Seshat.Demos.Browse.app
 	},
 	router: router,
 	watch: {

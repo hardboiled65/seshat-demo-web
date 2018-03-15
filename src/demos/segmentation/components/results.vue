@@ -1,11 +1,22 @@
-var Seshat = Seshat || SeshatDemo()
+<template>
+  <div>
+    <p>Result</p>
+    <result-text v-bind:segments="segments"></result-text>
+    <result-detail v-bind:breaks="breaks" v-bind:segments="segments"></result-detail>
+    <!-- <p>breaks: {{ breaks }}</p> -->
+    <!-- <p>segments: {{ segments }}</p> -->
+  </div>
+</template>
 
-Seshat.Demos.Seg.Components.Results = Vue.component('results', {
-	template: '#results-template',
+<script>
+import ResultText from './result-text'
+import ResultDetail from './result-detail'
+
+export default {
 	props: ['breaks'],
 	components: {
-		'result-text': Seshat.Demos.Seg.Components.ResultText,
-		'result-detail': Seshat.Demos.Seg.Components.ResultDetail
+		'result-text': ResultText,
+		'result-detail': ResultDetail
 	},
 	data: function() {
 		var list = this.getSegments()
@@ -33,4 +44,5 @@ Seshat.Demos.Seg.Components.Results = Vue.component('results', {
 			this.segments = this.getSegments()
 		}
 	}
-})
+}
+</script>

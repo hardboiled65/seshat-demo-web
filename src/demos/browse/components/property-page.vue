@@ -1,9 +1,41 @@
-var Seshat = Seshat || SeshatDemo()
+<template>
+  <div>
+    <div id="codepoint">
+      {{ codepoint }}
+    </div>
+    <div id="character-box">
+      <div id="character-title">Character</div>
+      <div id="character">{{ character }}</div>
+    </div>
+    <div id="character-name">
+      {{ name || "Loading ..." }}
+    </div>
+    <div id="properties-box">
+      <div id="control-btn-box">
+        <router-link
+          :to="prevLink"
+          tag="button"
+          id="btn-left">Left
+        </router-link>
+        <router-link
+          :to="nextLink"
+          tag="button"
+          id="btn-right">Right
+        </router-link>
+        <property v-on:name-fetched="updateName" v-bind:codepoint="codepoint">
+        </property>
+      </div> <!-- control-btn-box -->
+    </div>
+  </div>
+</template>
 
-Seshat.Demos.Browse.Components.PropertyPage = Vue.component('property-page', {
+<script>
+import Property from './property'
+
+export default {
 	template: '#properties-template',
 	components: {
-		property: Seshat.Demos.Browse.Components.Property
+		property: Property
 	},
 	props: ['changed'],
 	data: function() {
@@ -58,4 +90,5 @@ Seshat.Demos.Browse.Components.PropertyPage = Vue.component('property-page', {
 			}
 		}
 	}
-})
+}
+</script>

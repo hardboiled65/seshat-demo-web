@@ -1,5 +1,4 @@
-var Seshat = Seshat || SeshatDemo()
-
+<script>
 var API_SERVER = 'https://api.libseshat.tk/api/'
 
 var propertiesUrlPath = function(cp) {
@@ -19,7 +18,7 @@ var fetchedData = {
 	}
 }
 
-Seshat.Demos.Browse.Components.Property = Vue.component('property', {
+export default {
 	template: '#property-template',
 	props: ['codepoint'],
 	data: function() {
@@ -74,4 +73,5 @@ Seshat.Demos.Browse.Components.Property = Vue.component('property', {
 		*/
 		'$route': 'fetchData'
 	}
-})
+}
+</script>
