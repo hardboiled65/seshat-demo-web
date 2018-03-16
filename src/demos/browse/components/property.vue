@@ -1,4 +1,29 @@
+<template>
+  <table id="table-properties">
+    <thead>
+      <tr>
+        <td>Property</td>
+        <td>Value</td>
+      </tr>
+    </thead>
+    <tbody v-for="(mainprops, category) in properties"
+        v-if="filter['all'] || filter[category]">
+      <tr>
+        <th colspan="2">
+          {{ (category === 'misc' ? 'miscellaneous' : category) }}
+        </th>
+      </tr>
+      <tr v-for="(value, property) in mainprops">
+        <property-name v-bind:api-name="property"></property-name>
+        <td>{{ String(value) }}</td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
 <script>
+import PropertyName from './property-name'
+
 var API_SERVER = 'https://api.libseshat.tk/api/'
 
 var propertiesUrlPath = function(cp) {
@@ -20,7 +45,10 @@ var fetchedData = {
 
 export default {
 	template: '#property-template',
-	props: ['codepoint'],
+    components: {
+        'property-name': PropertyName
+    },
+	props: ['codepoint', 'filter'],
 	data: function() {
 		return {
 			properties: {

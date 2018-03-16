@@ -22,7 +22,53 @@
           tag="button"
           id="btn-right">Right
         </router-link>
-        <property v-on:name-fetched="updateName" v-bind:codepoint="codepoint">
+        <fieldset>
+          <legend>Filter</legend>
+          <div>
+            <input type="checkbox" value="all" id="check-all"
+              v-on:change="uncheckOthers()"
+              v-model="filter.all">
+            <label for="check-all">All</label>
+          </div>
+          <div>
+            <input type="checkbox" value="numeric" id="check-numeric"
+              v-bind:class="{ 'checkbox-not-selected': filter.all }"
+              v-model="filter.numeric">
+            <label for="check-numeric">Numeric</label>
+          </div>
+          <div>
+            <input type="checkbox" value="string" id="check-string"
+              v-bind:class="{ 'checkbox-not-selected': filter.all }"
+              v-model="filter.string">
+            <label for="check-string">String</label>
+          </div>
+          <div>
+            <input type="checkbox" value="misc" id="check-misc"
+              v-bind:class="{ 'checkbox-not-selected': filter.all }"
+              v-model="filter.misc">
+            <label for="check-misc">Miscellaneous</label>
+          </div>
+          <div>
+            <input type="checkbox" value="catalog" id="check-catalog"
+              v-bind:class="{ 'checkbox-not-selected': filter.all }"
+              v-model="filter.catalog">
+            <label for="check-catalog">Catalog</label>
+          </div>
+          <div>
+            <input type="checkbox" value="enumerated" id="check-enumerated"
+              v-bind:class="{ 'checkbox-not-selected': filter.all }"
+              v-model="filter.enumerated">
+            <label for="check-enumerated">Enumerated</label>
+          </div>
+          <div>
+            <input type="checkbox" value="binary" id="check-binary"
+              v-bind:class="{ 'checkbox-not-selected': filter.all }"
+              v-model="filter.binary">
+            <label for="check-binary">Binary</label>
+          </div>
+        </fieldset>
+        <property v-on:name-fetched="updateName" v-bind:codepoint="codepoint"
+            v-bind:filter="filter">
         </property>
       </div> <!-- control-btn-box -->
     </div>
@@ -48,7 +94,16 @@ export default {
 			name: null,
 
 			prevLink: cp.previous().toString(),
-			nextLink: cp.next().toString()
+			nextLink: cp.next().toString(),
+            filter: {
+                all: true,
+                numeric: false,
+                string: false,
+                misc: false,
+                catalog: false,
+                enumerated: false,
+                binary: false
+            }
 		}
 	},
 	methods: {
@@ -77,7 +132,18 @@ export default {
 			this.name = null
 			this.prevLink = cp.previous().toString()
 			this.nextLink = cp.next().toString()
-		}
+		},
+        uncheckOthers: function() {
+            console.log('all: ' + this.filter.all)
+            if (this.filter.all === true) {
+                this.filter.numeric = false
+                this.filter.string = false
+                this.filter.misc = false
+                this.filter.catalog = false
+                this.filter.enumerated = false
+                this.filter.binary = false
+            }
+        }
 	},
 	watch: {
 		'$route': function(to, from) {
@@ -88,7 +154,17 @@ export default {
 			} else {
 				this.nextCharacter()
 			}
-		}
+		},
+        filter: {
+            handler: function() {
+                if (this.filter.numeric || this.filter.string ||
+                        this.filter.misc || this.filter.catalog ||
+                        this.filter.enumerated || this.filter.binary) {
+                    this.filter.all = false
+                }
+            },
+            deep: true
+        }
 	}
 }
 </script>
