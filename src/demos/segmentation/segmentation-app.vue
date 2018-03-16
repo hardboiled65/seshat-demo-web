@@ -68,11 +68,13 @@ export default {
 			if (this.text === '') return
 			var text = this.text.replace(/%/g, '%25')
 				.replace(/\//g, '%2F')
+            // Change URL.
+            this.$router.push({
+                path: '', params: { type: this.type, text: text }
+            })
+            // Get data from the server.
 			axios.get(segmentationUrlPath(text))
 				.then((res) => {
-					this.$router.push({
-						path: '', params: { type: this.type, text: text }
-					})
 					_debug = res.data
 					this.result = res.data
 				})
