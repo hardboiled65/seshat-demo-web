@@ -29,68 +29,15 @@
 
   <!-- Templates -->
 
-  <script type="text/template" id="property-template">
-    <table id="table-properties">
-      <thead>
-        <tr>
-          <td>Property</td>
-          <td>Value</td>
-        </tr>
-      </thead>
-      <tbody>
-        {% for cat, props in property_names.items() %}
-        {% for prop, full in props.items() %}
-        <tr>
-          <td>(( full ))</td>
-          <td>{{ String(properties.(( cat )).(( prop ))) }}</td>
-        </tr>
-        {% endfor %}
-        {% endfor %}
-      </tbody>
-    </table>
-  </script>
-
-
   <!-- Frameworks/Libraries -->
   <script src="/libs/jquery-3.3.1.js"></script>
   <!--
   <script src="/libs/underscore.js"></script>
-  <script src="/libs/backbone.js"></script>
   -->
 
   <script src="/js/unicode.js"></script>
-  <script src="/js/seshat-demo.js"></script>
 
-  <!--
-  <script src="/js/demos/browse/models/character.js"></script>
-  <script src="/js/demos/browse/collections/character-list.js"></script>
-  <script src="/js/demos/browse/views/character-list-view.js"></script>
-  <script src="/js/demos/browse/views/character-view.js"></script>
-
-  <script src="/js/demos/browse/models/property.js"></script>
-  <script src="/js/demos/browse/collections/property-page.js"></script>
-  <script src="/js/demos/browse/views/property-page-view.js"></script>
-
-  <script src="/js/views/app-view.js"></script>
-  -->
-
-  <!--
-  <script src="/js/demos/browse/components/character.js"></script>
-  <script src="/js/demos/browse/components/character-list.js"></script>
-  <script src="/js/demos/browse/components/property.js"></script>
-  <script src="/js/demos/browse/components/property-page.js"></script>
-  <script src="/js/demos/browse/browse-app.js"></script>
-
-  <script src="/js/demos/segmentation/components/result-text.js"></script>
-  <script src="/js/demos/segmentation/components/result-detail.js"></script>
-  <script src="/js/demos/segmentation/components/results.js"></script>
-  <script src="/js/demos/segmentation/segmentation-app.js"></script>
-
-  <script src="/js/demos/demos-app.js"></script>
-
-  <script src="/js/routers/router.js"></script>
-  <script src="/js/app.js"></script>
-  -->
+  <!-- Main script bundle -->
   <script src="/js/bundle.js"></script>
 
   <!-- Others -->
