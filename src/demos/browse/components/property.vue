@@ -15,7 +15,9 @@
       </tr>
       <tr v-for="(value, property) in mainprops">
         <property-name v-bind:api-name="property"></property-name>
-        <td>{{ String(value) }}</td>
+        <td>
+            {{ ((typeof(value) === "object") ? value.full : ((typeof(value) === "boolean") ? {true: "Yes", false: "No"}[value] : value)) }}
+        </td>
       </tr>
     </tbody>
   </table>
