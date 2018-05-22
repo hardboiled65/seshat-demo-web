@@ -28,7 +28,7 @@ a {
 #seshat-demo-header a img {
     position: absolute;
     left: 20px;
-    height: 50px;
+    width: 120px;
     margin-top: 10px;
 }
 
