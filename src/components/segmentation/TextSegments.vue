@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'text-segments',
 	props: ['segments'],
 	data: function() {
 		return {

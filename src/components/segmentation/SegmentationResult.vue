@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>Result</p>
-    <result-text v-bind:segments="segments"></result-text>
+    <text-segments v-bind:segments="segments"></text-segments>
     <result-detail v-bind:breaks="breaks" v-bind:segments="segments"></result-detail>
     <!-- <p>breaks: {{ breaks }}</p> -->
     <!-- <p>segments: {{ segments }}</p> -->
@@ -9,13 +9,14 @@
 </template>
 
 <script>
-import ResultText from './result-text'
-import ResultDetail from './result-detail'
+import TextSegments from './TextSegments'
+import ResultDetail from './ResultDetail'
 
 export default {
+  name: 'segmentation-result',
 	props: ['breaks'],
 	components: {
-		'result-text': ResultText,
+		'text-segments': TextSegments,
 		'result-detail': ResultDetail
 	},
 	data: function() {

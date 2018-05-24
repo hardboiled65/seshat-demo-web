@@ -3,9 +3,10 @@
 </template>
 
 <script>
-import propertyNames from '../../../property_names'
+import propertyNames from '../../property_names'
 
 export default {
+  name: 'property-name',
     props: ['api-name'],
     computed: {
         full: function() {

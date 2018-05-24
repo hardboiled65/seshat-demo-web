@@ -1,16 +1,16 @@
 <template>
-  <div id="browse" class="app-component">
+  <div id="app-browse" class="app-component">
     <header>Character Browser - Demos</header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import CharacterList from './components/character-list'
-import Property from './components/property'
+import CharacterList from './browse/CharacterList'
+import PropertyPage from './browse/PropertyPage'
 
 export default {
-    name: 'browse',
+  name: 'app-browse',
 	props: {
 		'codepoint': String,
 		'from': String // hex number
@@ -18,7 +18,7 @@ export default {
 	template: '#browse-template',
 	components: {
 		'character-list': CharacterList,
-		'property': Property
+		'property-page': PropertyPage
 	}
 }
 </script>

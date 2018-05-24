@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Demos from '../demos/demos-app'
-import Browse from '../demos/browse/browse-app'
-import CharacterList from '../demos/browse/components/character-list'
-import PropertyPage from '../demos/browse/components/property-page'
+import AppDemos from '../components/AppDemos'
 
-import Segmentation from '../demos/segmentation/segmentation-app'
+import AppBrowse from '../components/AppBrowse'
+import CharacterList from '../components/browse/CharacterList'
+import PropertyPage from '../components/browse/PropertyPage'
+
+import AppSegmentation from '../components/AppSegmentation'
 
 // Vue.use(VueRouter)
 
@@ -16,11 +17,11 @@ export default new VueRouter({
 		{
 			path: '/',
 			name: 'demos',
-			component: Demos
+			component: AppDemos
 		},
 		{
 			path: '/browse',
-			component: Browse,
+			component: AppBrowse,
 			props: (route) => ({
 				from: (route.query ? route.query.from : ''),
 				codepoint: ''
@@ -48,7 +49,7 @@ export default new VueRouter({
 		{
 			path: '/segmentation/:type?/:text?',
 			name: 'segmentation',
-			component: Segmentation,
+			component: AppSegmentation,
 			props: (route) => ({
 				type: (route.params ? route.params.type : 'grapheme')
 			})

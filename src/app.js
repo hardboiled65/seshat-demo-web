@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import router from './router/index'
-import Demos from './demos/demos-app'
+import AppDemos from './components/AppDemos'
 
 var vm = new Vue({
 	el: '#container',
@@ -9,7 +9,7 @@ var vm = new Vue({
 		demo: null
 	},
 	components: {
-		demos: Demos
+		'app-demos': AppDemos
 		// browse: Seshat.Demos.Browse.app
 	},
 	router: router,

@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: 'character-list-link',
 	template: '#character-template',
 	props: ['codePoint', 'string'],
 	data: function() {

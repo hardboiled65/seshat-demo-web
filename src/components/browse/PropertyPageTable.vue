@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import PropertyName from './property-name'
+import PropertyName from './PropertyName'
 
 var API_SERVER = 'https://api.libseshat.tk/api/'
 
@@ -46,6 +46,7 @@ var fetchedData = {
 }
 
 export default {
+  name: 'property-page-table',
 	template: '#property-template',
     components: {
         'property-name': PropertyName

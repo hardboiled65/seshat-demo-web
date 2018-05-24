@@ -1,5 +1,5 @@
 <template>
-  <div id="demos" class="app-component">
+  <div id="app-demos" class="app-component">
     <div id="group-demos" class="demos-list-group">
       <ul id="list-demos">
         <li id="list-demos-browse">
@@ -24,11 +24,11 @@
       <ul>
       </ul>
     </div>
-  </div> <!-- demos -->
+  </div> <!-- app-demos -->
 </template>
 
 <script>
 export default {
-    name: 'demos'
+    name: 'app-demos'
 }
 </script>

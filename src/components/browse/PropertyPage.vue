@@ -67,21 +67,22 @@
             <label for="check-binary">Binary</label>
           </div>
         </fieldset>
-        <property v-on:name-fetched="updateName" v-bind:codepoint="codepoint"
+        <property-page-table v-on:name-fetched="updateName" v-bind:codepoint="codepoint"
             v-bind:filter="filter">
-        </property>
+        </property-page-table>
       </div> <!-- control-btn-box -->
     </div>
   </div>
 </template>
 
 <script>
-import Property from './property'
+import PropertyPageTable from './PropertyPageTable'
 
 export default {
+  name: 'property-page',
 	template: '#properties-template',
 	components: {
-		property: Property
+		'property-page-table': PropertyPageTable
 	},
 	props: ['changed'],
 	data: function() {

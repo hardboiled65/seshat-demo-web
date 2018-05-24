@@ -11,24 +11,25 @@
     </thead>
     <tbody>
       <tr v-for="(item, index) in characters">
-        <character
+        <character-list-link
           v-for="character in item"
           v-bind:code-point="character.codePoint"
           v-bind:string="character.string">
-        </character>
+        </character-list-link>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-import Character from './character'
+import CharacterListLink from './CharacterListLink'
 
 export default {
 // Seshat.Demos.Browse.Components.CharacterList = Vue.component('character-list', {
+  name: 'character-list',
 	template: '#character-list-template',
 	components: {
-		character: Character
+		'character-list-link': CharacterListLink
 	},
 	props: ['from'],
 	data: function() {

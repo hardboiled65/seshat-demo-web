@@ -1,5 +1,5 @@
 <template>
-<div id="segmentation" class="app-component">
+<div id="app-segmentation" class="app-component">
   <header>Text Segmentations - Demos</header>
   <h2>Grapheme cluster</h2>
   <input type="radio" id="segmentation-grapheme" value="grapheme" v-model="type">
@@ -17,12 +17,12 @@
   <p>Input text</p>
   <input v-model="text">
   <button v-on:click="fetchResult">Result</button>
-  <results v-if="result" v-bind:breaks="result.breaks"></results>
+  <segmentation-result v-if="result" v-bind:breaks="result.breaks"></segmentation-result>
 </div>
 </template>
 
 <script>
-import Results from './components/results'
+import SegmentationResult from './segmentation/SegmentationResult'
 
 var API_SERVER = 'https://api.libseshat.tk/api/'
 
@@ -38,7 +38,7 @@ var textEscape = function(text) {
 var _debug = null
 export default {
 	// template: '#segmentation-template',
-    name: 'segmentation',
+  name: 'app-segmentation',
 	props: {
 		type: String
 	},
@@ -49,7 +49,7 @@ export default {
 		}
 	},
 	components: {
-		results: Results,
+		'segmentation-result': SegmentationResult,
 	},
 	created: function() {
 		if (!this.$route.params.type) {

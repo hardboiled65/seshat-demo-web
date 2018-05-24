@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name: 'result-detail',
 	props: ['breaks', 'segments'],
 	data: function() {
 		return {
