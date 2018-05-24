@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import router from './routers/router'
+import router from './router/index'
 import Demos from './demos/demos-app'
 
 var vm = new Vue({
