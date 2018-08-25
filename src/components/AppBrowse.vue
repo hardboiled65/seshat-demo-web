@@ -11,22 +11,22 @@ import PropertyPage from './browse/PropertyPage'
 
 export default {
   name: 'app-browse',
-	components: {
-		'character-list': CharacterList,
-		'property-page': PropertyPage
-	},
+  components: {
+    'character-list': CharacterList,
+    'property-page': PropertyPage
+  },
 
   props: {
-		codepoint: {
+    codepoint: {
       type: String,
       default: ''
     },
 
-		from: {
+    from: {
       type: String, // hex number
       required: false
     }
-	}
-	//template: '#browse-template',
+  }
+  //template: '#browse-template',
 }
 </script>

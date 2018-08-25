@@ -11,24 +11,28 @@
     </thead>
     <tbody>
       <tr v-for="(item, index) in characters">
-        <character-list-link
-          v-for="character in item"
-          v-bind:code-point="character.codePoint"
-          v-bind:string="character.string">
-        </character-list-link>
+        <td v-for="character in item">
+          <span v-if="character.codePoint !== ''">
+            <router-link :to="'/browse/' + character.codePoint">
+              <base-character
+                v-bind:character="character.string"
+                v-bind:code-point="character.codePoint"
+                v-bind:show-code-point="false">
+              </base-character>
+            </router-link>
+          </span>
+          <span v-else>{{ character.string }}</span>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-import CharacterListLink from './CharacterListLink'
-
 export default {
   name: 'character-list',
   // template: '#character-list-template',
   components: {
-    'character-list-link': CharacterListLink
   },
 	props: ['from'],
 	data: function() {
