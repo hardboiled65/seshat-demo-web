@@ -39,18 +39,25 @@ var _debug = null
 export default {
 	// template: '#segmentation-template',
   name: 'app-segmentation',
-	props: {
-		type: String
+	components: {
+		'segmentation-result': SegmentationResult,
 	},
+
+	props: {
+		type: String,
+    default: 'grapheme',
+    validator: function(val) {
+      return (val === 'grapheme' || val === 'word');
+    }
+	},
+
 	data: function() {
 		return {
 			text: '',
 			result: null
 		}
 	},
-	components: {
-		'segmentation-result': SegmentationResult,
-	},
+
 	created: function() {
 		if (!this.$route.params.type) {
 			// this.$router.push('segmentation/' + this.type)

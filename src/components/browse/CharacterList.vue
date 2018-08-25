@@ -25,12 +25,11 @@
 import CharacterListLink from './CharacterListLink'
 
 export default {
-// Seshat.Demos.Browse.Components.CharacterList = Vue.component('character-list', {
   name: 'character-list',
-	template: '#character-list-template',
-	components: {
-		'character-list-link': CharacterListLink
-	},
+  // template: '#character-list-template',
+  components: {
+    'character-list-link': CharacterListLink
+  },
 	props: ['from'],
 	data: function() {
 		var characters = []

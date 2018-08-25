@@ -14,11 +14,17 @@ import ResultDetail from './ResultDetail'
 
 export default {
   name: 'segmentation-result',
-	props: ['breaks'],
 	components: {
 		'text-segments': TextSegments,
 		'result-detail': ResultDetail
 	},
+
+	props: {
+    breaks: {
+      type: Array,
+      required: true
+    }
+  },
 	data: function() {
 		var list = this.getSegments()
 		return {

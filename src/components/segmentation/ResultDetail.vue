@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div
+  <!-- <div
     class="result-detail-parent"
     v-for="(br, index) in breaks"
     v-bind:key="index">
@@ -11,14 +11,32 @@
       <p class="character">{{ cp.character }}</p>
       <p>{{ cp.codepoint }}</p>
     </div>
-  </div>
+  </div> -->
+  <result-detail-segment
+    v-for="(segment, idx) in breaks" :key="idx"
+    :segment="segment">
+  </result-detail-segment>
 </div>
 </template>
 
 <script>
+import ResultDetailSegment from './ResultDetailSegment'
+
 export default {
   name: 'result-detail',
-	props: ['breaks', 'segments'],
+  components: {
+    'result-detail-segment': ResultDetailSegment
+  },
+
+	props: {
+    breaks: {
+      type: Array
+    },
+    segments: {
+      type: Array
+    }
+  },
+
 	data: function() {
 		return {
 		}

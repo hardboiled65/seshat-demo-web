@@ -3,6 +3,12 @@ import Vue from 'vue'
 import router from './router/index'
 import AppDemos from './components/AppDemos'
 
+import BaseCharacter from './components/BaseCharacter'
+import BaseCharacterPopup from './components/BaseCharacterPopup'
+
+Vue.component(BaseCharacter.name, BaseCharacter);
+Vue.component(BaseCharacterPopup.name, BaseCharacterPopup);
+
 var vm = new Vue({
 	el: '#container',
 	data: {
