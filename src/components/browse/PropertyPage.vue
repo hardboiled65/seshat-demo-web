@@ -8,7 +8,7 @@
       <div id="character">{{ character }}</div>
     </div>
     <div id="character-name">
-      {{ name || "Loading ..." }}
+      {{ name === null ? "Loading ..." : name }}
     </div>
     <div id="properties-box">
       <div id="control-btn-box">

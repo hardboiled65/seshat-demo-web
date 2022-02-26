@@ -24,10 +24,10 @@
 <script>
 import SegmentationResult from './segmentation/SegmentationResult'
 
-var API_SERVER = 'https://api.libseshat.tk/api/'
+var API_SERVER = 'https://seshat.hardboiled65.io/api/v2/'
 
 var segmentationUrlPath = function(text) {
-	return API_SERVER + 'unicode/segmentation/grapheme/' + text
+	return API_SERVER + 'unicode/segmentation/graphemes/' + text
 }
 
 var textEscape = function(text) {

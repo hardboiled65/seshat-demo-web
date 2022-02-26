@@ -26,7 +26,7 @@
 <script>
 import PropertyName from './PropertyName'
 
-var API_SERVER = 'https://api.libseshat.tk/api/'
+var API_SERVER = 'https://seshat.hardboiled65.io/api/v2/'
 
 var propertiesUrlPath = function(cp) {
 	return API_SERVER + 'unicode/properties/' + cp
